@@ -1,15 +1,19 @@
-import React from 'react';
-import OptionComponent from './OptionComponent';
+import React, {useState} from 'react';
+import OptionComponents from './OptionComponents';
 
-const QuestionComponent = ({ questions }) => {
+
+const QuestionComponent = ({ question }) => {
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleSelectOption = (questionId, optionId) => {
+        setSelectedOption(optionId);
+        
+    };
+
     return (
         <div>
-            {questions.map(question => (
-                <div key={question.id}>
-                    <h3>{question.text}</h3>
-                    <OptionComponent options={question.options} />
-                </div>
-            ))}
+            <h3>{question.text}</h3>
+            <OptionComponents options={question.options} onSelectOption={handleSelectOption} />
         </div>
     );
 };
