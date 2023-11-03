@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionComponent from './QuestionComponent';
+import './QuizStyle.css';
+
+
 
 const QuizComponent = () => {
     const [quizzes, setQuizzes] = useState([]);
@@ -45,17 +48,19 @@ const QuizComponent = () => {
     }
 
     return (
-        <div>
-            <h1>Quizzes</h1>
+        <div className="quiz-container"> {/* Apply 'quiz-container' class */}
+            <h1 className="quiz-title">Quizzes</h1> {/* Apply 'quiz-title' class */}
             {quizzes.map(quiz => (
                 <div key={quiz.id}>
                     <h2>{quiz.title}</h2>
                     {quiz.questions.map(question => (
-                        <QuestionComponent key={question.id} question={question} onSelectOption={handleSelectOption} />
+                        <div className="question-container" key={question.id}> {/* Apply 'question-container' class */}
+                            <QuestionComponent question={question} onSelectOption={handleSelectOption} />
+                        </div>
                     ))}
                 </div>
             ))}
-            <button onClick={handleSubmit}>Submit Answers</button>
+            <button className="submit-button" onClick={handleSubmit}>Submit Answers</button> {/* Apply 'submit-button' class */}
         </div>
     );
 };
