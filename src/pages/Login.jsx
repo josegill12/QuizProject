@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
   const navigate = useNavigate();
+
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -14,7 +16,7 @@ const Login = () => {
 
     try {
       // Send a POST request to your login API endpoint
-      const response = await axios.post('https://localhost:8000/api/login', {
+      const response = await axios.post('https://localhost:8000/token/login', {
         username, // or email
         password,
       });

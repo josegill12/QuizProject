@@ -11,6 +11,8 @@ const navigate = useNavigate();
 const [email, setEmail] = useState('');
 
 // Handle change in forms fields
+
+
 const handleUsernameChange = (event) => {
   setUsername(event.target.value);
 };
@@ -33,10 +35,10 @@ const handleSubmit = async (event) => {
     const response = await axios.post(endpoint, data);
     const token = response.data;
  
-    localStorage.setItem('authToken', token);
+    localStorage.setItem('authToken',token.auth_token);
  
     // Include the JWT in the Authorization header for subsequent requests
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `Token ${token}`;
  
     console.log('Success:', token);
     navigate('/profile');
